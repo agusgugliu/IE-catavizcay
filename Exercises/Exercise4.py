@@ -19,4 +19,6 @@ months = {
 
 date = input('Enter a date in dd/mm/yyyy format: ')
 day, month, year = date.split('/')
-print(f'{months[int(month)]} {day}, {year}')
+month = int(month)
+
+print(f'{months[month]} {day}, {year}')

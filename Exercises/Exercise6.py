@@ -4,9 +4,12 @@ Write a program that creates an empty dictionary and fills it with information a
 '''
 person = {}
 repeat = True
+
 while repeat:
     attribute = input('What data do you want to enter?\t')
     value = input(attribute + ': ')
+
     person[attribute] = value
     print(person)    
+    
     repeat = input('Do you want to add more information (Yes/No)? ').upper() == "YES"

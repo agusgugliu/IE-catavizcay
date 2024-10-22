@@ -6,7 +6,8 @@ Write a program that stores the dictionary with the credits of the subjects of a
 courses = {
     'Mathematics': 6, 
     'Physics': 4, 
-    'Chemistry': 5}
+    'Chemistry': 5,
+    'Biology': 3}
 
 total_credits = 0
 

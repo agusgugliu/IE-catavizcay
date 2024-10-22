@@ -17,4 +17,5 @@ for d in directory[1:]:
     d = d.split(';')
     customers[d[0]] = {'name': d[1], 'email': d[2], 'telephone': d[3], 'discount': float(d[4])}
 
-print(customers)
+for c in customers:
+    print(f'{c}: {customers[c]}')

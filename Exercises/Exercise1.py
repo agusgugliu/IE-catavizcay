@@ -7,9 +7,11 @@ Write a program that stores in a variable the dictionary {'Euro':'€', 'Dollar'
 '''
 
 currencies = {'Euro':'€', 'Dollar':'$', 'Yen':'¥'}
-currency = input('Enter a currency:\t')
 
-if currency.title() in currencies:
-    print(currencies[currency.title()])
+currency = input('Enter a currency:\t')
+currency = currency.title()
+
+if currency in currencies:
+    print(currencies[currency])
 else:
     print('Currency is missing.')

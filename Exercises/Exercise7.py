@@ -7,18 +7,20 @@ Item 2 Price
 Item 3 Price
 Total Cost
 '''
+
 repeat = True
 cart = {}
 total_cost = 0
+
 
 while repeat:
     product = str(input("Enter the product:\t")).upper()
     price = float(input("Enter the price:\t"))
     cart[product] = price
     total_cost += price
-    repeat = input("Do you want to add another product? (y/n) ").lower() == 'y'
+    repeat = input("Do you want to add another product? (y/n)").lower() == 'y'
 
-print('SHOPPING LIST')
+print('------\nSHOPPING LIST')
 for item in cart:
     print(f"\t- {item} ${cart[item]}")
 print(f"TOTAL COST:\t\t${total_cost}")

@@ -16,9 +16,9 @@ fruit_prices = {
 }
 
 fruit = input('Enter the fruit: ').capitalize()
+kilos = float(input('Enter the number of kilos: '))
 
 if fruit in fruit_prices:
-    kilos = float(input('Enter the number of kilos: '))
     print(f'The price of {kilos} kilos of {fruit} is: {kilos * fruit_prices[fruit]}')
 else:
     print('The fruit is not in the dictionary')
