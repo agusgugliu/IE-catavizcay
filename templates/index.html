@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Advisor</title>
+</head>
+<body>
+    <h1>Study Advisor</h1>
+    <form method="POST">
+        <label for="country">Select Country:</label>
+        <select name="country" id="country" onchange="this.form.submit()">
+            <option value="">--Select Country--</option>
+            {% for country in countries %}
+                <option value="{{ country }}" {% if country == request.form.get('country') %}selected{% endif %}>{{ country }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <label for="degree">Select Degree:</label>
+        <select name="degree" id="degree" onchange="this.form.submit()">
+            <option value="">--Select Degree--</option>
+            {% for degree in degrees %}
+                <option value="{{ degree }}" {% if degree == request.form.get('degree') %}selected{% endif %}>{{ degree }}</option>
+            {% endfor %}
+        </select>
+    </form>
+    <br>
+    {% if universities %}
+        <h2>Universities:</h2>
+        <ul>
+            {% for university in universities %}
+                <li>{{ university }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
