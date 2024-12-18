@@ -229,3 +229,77 @@ country = 'Albania'
 date = '2017'
 
 plot_debt_bar_chart(df, country, date)
+
+'''
+[6] Create a function that receives a list of countries and a type of debt and draws a line chart showing the evolution of that type of debt for those countries (one line per country).
+
+'''
+
+print('\n---\nEXERCISE N°6\n---\n')
+
+
+def plot_debt_evolution_line_chart(df, countries, debt_type): #Create a function
+    plt.figure(figsize=(12, 8)) #Chart size
+    
+    for country in countries: #Loop to check if the country is in the DF
+        df_filtered = df[(df['Country Name'] == country) & (df['Series Name'].str.contains(debt_type, case=False))] #Filter the DF
+        
+        if df_filtered.empty:
+            continue
+        
+        df_filtered = df_filtered.sort_values(by='Date') #Sort values by Date
+        
+        plt.plot(df_filtered['Date'], df_filtered['Debt_Amount'], label=country) # Values for graph
+    
+    #Graph information
+
+    plt.xlabel('Date')
+    plt.ylabel('Debt Amount')
+    plt.title(f'Debt Evolution of {debt_type.capitalize()} Debt for Selected Countries')
+    plt.xticks(rotation=45)
+    plt.legend(title='Country')
+    plt.yscale('log')
+    plt.tight_layout()
+    plt.show()
+
+
+#Example
+countries = ['Albania', 'Canada', 'Australia']
+debt_type = 'external'
+plot_debt_evolution_line_chart(df_long, countries, debt_type) #Plot graph
+
+
+'''
+[7] Create a function that receives a country and a list of debt types and draws a line chart showing the evolution of those debt types for that country (one line per debt type).
+
+'''
+
+print('\n---\nEXERCISE N°7\n---\n')
+
+def plot_multiple_debt_types_evolution_line_chart(df, country, debt_types):#Create a function
+    plt.figure(figsize=(12, 8)) #Chart size
+    
+    for debt_type in debt_types:#Loop to check if the country is in the DF
+        df_filtered = df[(df['Country Name'] == country) & (df['Series Name'].str.contains(debt_type, case=False))]#Filter the DF
+        
+        if df_filtered.empty:
+            continue
+        df_filtered = df_filtered.sort_values(by='Date') #Sort values by Date
+        
+        plt.plot(df_filtered['Date'], df_filtered['Debt_Amount'], label=debt_type.capitalize())# Values for graph
+
+    #Graph information
+    plt.xlabel('Date')
+    plt.ylabel('Debt Amount')
+    plt.title(f'Debt Evolution for {country} - Selected Debt Types')
+    plt.xticks(rotation=45)
+    plt.legend(title='Debt Type')
+    plt.yscale('log')
+    plt.tight_layout()
+    plt.show()
+
+#Example
+country = 'Albania'
+debt_types = ['internal', 'external', 'foreign currency']
+plot_multiple_debt_types_evolution_line_chart(df_long, country, debt_types)
+
