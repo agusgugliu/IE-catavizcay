@@ -189,3 +189,43 @@ country = 'Albania'
 date = '2017'
 
 plot_debt_bar_chart(df, country, date)
+
+
+'''
+[5] Create a function that receives a country and a date, and draws a bar chart with the amounts of the different types of debts of that country on that date.
+
+'''
+
+print('\n---\nEXERCISE N°5\n---\n')
+
+def plot_debt_bar_chart(df, country, date): #Create function
+
+    # Filter the DataFrame for the specified country and date
+    df_filtered = df[(df['Country Name'] == country) & (df['Date'] == date)]
+    
+    # Get the unique debt types and their corresponding values
+    debt_types = ['internal', 'external', 'local currency', 'foreign currency', 'short term', 'long term']#Define debt types
+    debt_values = {debt_type: df_filtered[df_filtered['Series Name'].str.contains(debt_type, case=False)]
+     ['Debt_Amount'].sum() for debt_type in debt_types} # Gives values to the debt types
+    debt_values = {k: v for k, v in debt_values.items() if v > 0} #remove values that are < 0 from graph 
+
+    # Plot the bar chart
+
+    # Chart design  
+    plt.figure(figsize=(10, 6)) #size of graph
+    bars = plt.bar(debt_values.keys(), debt_values.values(), 
+                   color=['skyblue', 'orange', 'green',
+                          'purple', 'pink', 'brown'])
+    plt.xticks(rotation=90)
+    plt.title(f'{country.upper()} DEBT DISTRIBUTION ON {date}')
+    plt.xlabel('Debt Types')
+    plt.ylabel('Debt Amount')
+    plt.show()
+
+
+#Example
+df = df_long
+country = 'Albania'
+date = '2017'
+
+plot_debt_bar_chart(df, country, date)
