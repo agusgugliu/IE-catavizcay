@@ -214,7 +214,4 @@ while option != 9 and option not in range(1, nr_options+1):
         #EXAMPLE
         df = df_long
 
-        plot_debt_bar_chart(df, country, date)
-
-    elif option == 9:
-        break
+plot_debt_bar_chart(df, country, date)
